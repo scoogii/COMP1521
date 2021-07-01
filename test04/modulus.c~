@@ -1,0 +1,10 @@
+// Testing modulu operator
+
+#include <stdio.h>
+
+int main(void) {
+
+    printf("-1 % 16 is %d\n", (-1 % 16));
+    
+    return 0;
+}

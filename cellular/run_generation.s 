@@ -1,0 +1,40 @@
+## redoing run_gen since i don't like how it turned out
+
+########################################################################
+# run_generation function
+	#
+	# Given `world_size', `which_generation', and `rule', calculate
+	# a new generation according to `rule' and store it in `cells'.
+	#
+	### REGISTERS:
+	#
+	## Arguments:
+	# $a0 = $s0 = world_size (world_size)
+	# $a1 = $s4 = g (which_generation)
+	# $a2 = $s1 = rule (rule)
+	#
+	## Registers saved and used:
+	# $s0: used to calc. row index
+	# $s1: used to calc. column index
+	#
+	## Misc:
+	# $s5 = addr of cells[0][0]
+	# $t0: left neighbour cell & used as a constant value for calculations 
+	# $t1: centre neighbour cell 
+	# $t2: right neighbour cell
+	# $t3: state of cell & used in array calculations & for calculating conditions
+	# $t4: bit 
+	# $t5: set
+	# $t6: cells index (e.g. cells[which_generation - 1][x]
+	# $t7: x loop counter
+
+run_generation:			
+	sw 		$fp, -4($sp)								# save original frame pointer
+	sw 		$s0, -8($sp) 								# push $s0 onto stack (saving it so we can use reg.)
+	sw 		$s1, -12($sp)								# push $s1 onto stack (saving it so we can use reg.)
+	la 		$fp, -4($sp)								# set new $fp
+	addiu 	$sp, $sp, -20								# set new $sp, making room for $s0 and $s1
+
+    la      $s5, cells                                  # load addr of cells[0][0]
+    li      $t7, 0                                      # let temp reg be 0 (int x = 0)
+

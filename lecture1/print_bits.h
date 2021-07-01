@@ -1,0 +1,7 @@
+// header file so we use print_bits in several examples
+#ifndef PRINT_BITS_H
+
+#include <stdint.h>
+void print_bits(uint64_t value, int how_many_bits);
+
+#endif

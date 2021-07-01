@@ -1,0 +1,1 @@
+/web/cs1521/20T2/activities/get_string/files.ln/get_string.mk
